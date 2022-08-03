@@ -1,0 +1,809 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StaffManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dep_Manager">
+          <Key>
+            <PropertyRef Name="Dep_ID" />
+            <PropertyRef Name="Manager_ID" />
+          </Key>
+          <Property Name="Dep_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Manager_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Joindate" Type="date" />
+          <Property Name="Leavedate" Type="date" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Dep_ID" />
+          </Key>
+          <Property Name="Dep_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Dep_Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="Staff_ID" />
+          </Key>
+          <Property Name="Staff_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Staff_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DoB" Type="date" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pic" Type="varchar" MaxLength="200" />
+          <Property Name="CV" Type="varchar" MaxLength="200" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Datehired" Type="date" />
+          <Property Name="Dateleft" Type="date" />
+          <Property Name="Role_ID" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Project_Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Start" Type="datetime" />
+          <Property Name="Deadline" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Document" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Project_Manager">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+            <PropertyRef Name="Manager_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Manager_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Joindate" Type="date" />
+          <Property Name="Leavedate" Type="date" />
+        </EntityType>
+        <EntityType Name="Project_Team">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+            <PropertyRef Name="Team_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Team_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Joindate" Type="date" />
+          <Property Name="Leavedate" Type="date" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Role_Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Base_Salary" Type="int" Nullable="false" />
+          <Property Name="Badge" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Staff_ID" />
+          </Key>
+          <Property Name="Staff_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Staff_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DoB" Type="date" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pic" Type="varchar" MaxLength="200" />
+          <Property Name="CV" Type="varchar" MaxLength="200" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Datehired" Type="date" />
+          <Property Name="Dateleft" Type="date" />
+          <Property Name="Role_ID" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff_Team">
+          <Key>
+            <PropertyRef Name="Staff_ID" />
+            <PropertyRef Name="Team_ID" />
+          </Key>
+          <Property Name="Staff_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Team_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Joindate" Type="date" />
+          <Property Name="Leavedate" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Team_ID" />
+          </Key>
+          <Property Name="Team_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Team_Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Dep_ID" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DMDep">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Dep_Manager" Type="Self.Dep_Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Dep_ID" />
+            </Principal>
+            <Dependent Role="Dep_Manager">
+              <PropertyRef Name="Dep_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DMManager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="Dep_Manager" Type="Self.Dep_Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Staff_ID" />
+            </Principal>
+            <Dependent Role="Dep_Manager">
+              <PropertyRef Name="Manager_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manager_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapPrj">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Project_Team" Type="Self.Project_Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="Project_Team">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapTeam">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Project_Team" Type="Self.Project_Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Team_ID" />
+            </Principal>
+            <Dependent Role="Project_Team">
+              <PropertyRef Name="Team_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PMDep">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Project_Manager" Type="Self.Project_Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="Project_Manager">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PMManager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="Project_Manager" Type="Self.Project_Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Staff_ID" />
+            </Principal>
+            <Dependent Role="Project_Manager">
+              <PropertyRef Name="Manager_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ST_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Staff_Team" Type="Self.Staff_Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Staff_ID" />
+            </Principal>
+            <Dependent Role="Staff_Team">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ST_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Staff_Team" Type="Self.Staff_Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Team_ID" />
+            </Principal>
+            <Dependent Role="Staff_Team">
+              <PropertyRef Name="Team_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Dep">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Dep_ID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="Dep_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StaffManagementModelStoreContainer">
+          <EntitySet Name="Dep_Manager" EntityType="Self.Dep_Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_Manager" EntityType="Self.Project_Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_Team" EntityType="Self.Project_Team" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff_Team" EntityType="Self.Staff_Team" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DMDep" Association="Self.FK_DMDep">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Dep_Manager" EntitySet="Dep_Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DMManager" Association="Self.FK_DMManager">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Dep_Manager" EntitySet="Dep_Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_Role" Association="Self.FK_Manager_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapPrj" Association="Self.FK_MapPrj">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Project_Team" EntitySet="Project_Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapTeam" Association="Self.FK_MapTeam">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Project_Team" EntitySet="Project_Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PMDep" Association="Self.FK_PMDep">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Project_Manager" EntitySet="Project_Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PMManager" Association="Self.FK_PMManager">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Project_Manager" EntitySet="Project_Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ST_Staff" Association="Self.FK_ST_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Staff_Team" EntitySet="Staff_Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ST_Team" Association="Self.FK_ST_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Staff_Team" EntitySet="Staff_Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Role" Association="Self.FK_Staff_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Dep" Association="Self.FK_Team_Dep">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StaffManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Dep_Manager">
+          <Key>
+            <PropertyRef Name="Dep_ID" />
+            <PropertyRef Name="Manager_ID" />
+          </Key>
+          <Property Name="Dep_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manager_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Joindate" Type="DateTime" Precision="0" />
+          <Property Name="Leavedate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_DMDep" FromRole="Dep_Manager" ToRole="Department" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_DMManager" FromRole="Dep_Manager" ToRole="Manager" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Dep_ID" />
+          </Key>
+          <Property Name="Dep_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dep_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dep_Manager" Relationship="Self.FK_DMDep" FromRole="Department" ToRole="Dep_Manager" />
+          <NavigationProperty Name="Teams" Relationship="Self.FK_Team_Dep" FromRole="Department" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="Staff_ID" />
+          </Key>
+          <Property Name="Staff_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Staff_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pic" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CV" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Datehired" Type="DateTime" Precision="0" />
+          <Property Name="Dateleft" Type="DateTime" Precision="0" />
+          <Property Name="Role_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Dep_Manager" Relationship="Self.FK_DMManager" FromRole="Manager" ToRole="Dep_Manager" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Manager_Role" FromRole="Manager" ToRole="Role" />
+          <NavigationProperty Name="Project_Manager" Relationship="Self.FK_PMManager" FromRole="Manager" ToRole="Project_Manager" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Project_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Start" Type="DateTime" Precision="3" />
+          <Property Name="Deadline" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Document" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Project_Team" Relationship="Self.FK_MapPrj" FromRole="Project" ToRole="Project_Team" />
+          <NavigationProperty Name="Project_Manager" Relationship="Self.FK_PMDep" FromRole="Project" ToRole="Project_Manager" />
+        </EntityType>
+        <EntityType Name="Project_Manager">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+            <PropertyRef Name="Manager_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manager_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Joindate" Type="DateTime" Precision="0" />
+          <Property Name="Leavedate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_PMManager" FromRole="Project_Manager" ToRole="Manager" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_PMDep" FromRole="Project_Manager" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Project_Team">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+            <PropertyRef Name="Team_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Team_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Joindate" Type="DateTime" Precision="0" />
+          <Property Name="Leavedate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_MapPrj" FromRole="Project_Team" ToRole="Project" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_MapTeam" FromRole="Project_Team" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Base_Salary" Type="Int32" Nullable="false" />
+          <Property Name="Badge" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Managers" Relationship="Self.FK_Manager_Role" FromRole="Role" ToRole="Manager" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Role" FromRole="Role" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Staff_ID" />
+          </Key>
+          <Property Name="Staff_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Staff_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pic" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CV" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Datehired" Type="DateTime" Precision="0" />
+          <Property Name="Dateleft" Type="DateTime" Precision="0" />
+          <Property Name="Role_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Staff_Role" FromRole="Staff" ToRole="Role" />
+          <NavigationProperty Name="Staff_Team" Relationship="Self.FK_ST_Staff" FromRole="Staff" ToRole="Staff_Team" />
+        </EntityType>
+        <EntityType Name="Staff_Team">
+          <Key>
+            <PropertyRef Name="Staff_ID" />
+            <PropertyRef Name="Team_ID" />
+          </Key>
+          <Property Name="Staff_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Team_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Joindate" Type="DateTime" Precision="0" />
+          <Property Name="Leavedate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_ST_Staff" FromRole="Staff_Team" ToRole="Staff" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_ST_Team" FromRole="Staff_Team" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Team_ID" />
+          </Key>
+          <Property Name="Team_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Team_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dep_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Team_Dep" FromRole="Team" ToRole="Department" />
+          <NavigationProperty Name="Project_Team" Relationship="Self.FK_MapTeam" FromRole="Team" ToRole="Project_Team" />
+          <NavigationProperty Name="Staff_Team" Relationship="Self.FK_ST_Team" FromRole="Team" ToRole="Staff_Team" />
+        </EntityType>
+        <Association Name="FK_DMDep">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Dep_Manager" Type="Self.Dep_Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Dep_ID" />
+            </Principal>
+            <Dependent Role="Dep_Manager">
+              <PropertyRef Name="Dep_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DMManager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="Dep_Manager" Type="Self.Dep_Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Staff_ID" />
+            </Principal>
+            <Dependent Role="Dep_Manager">
+              <PropertyRef Name="Manager_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Dep">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Dep_ID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="Dep_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manager_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PMManager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="Project_Manager" Type="Self.Project_Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Staff_ID" />
+            </Principal>
+            <Dependent Role="Project_Manager">
+              <PropertyRef Name="Manager_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapPrj">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Project_Team" Type="Self.Project_Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="Project_Team">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PMDep">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Project_Manager" Type="Self.Project_Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="Project_Manager">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapTeam">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Project_Team" Type="Self.Project_Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Team_ID" />
+            </Principal>
+            <Dependent Role="Project_Team">
+              <PropertyRef Name="Team_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ST_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Staff_Team" Type="Self.Staff_Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Staff_ID" />
+            </Principal>
+            <Dependent Role="Staff_Team">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ST_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Staff_Team" Type="Self.Staff_Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Team_ID" />
+            </Principal>
+            <Dependent Role="Staff_Team">
+              <PropertyRef Name="Team_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StaffManagementEntitiesModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dep_Manager" EntityType="Self.Dep_Manager" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Managers" EntityType="Self.Manager" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="Project_Manager" EntityType="Self.Project_Manager" />
+          <EntitySet Name="Project_Team" EntityType="Self.Project_Team" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <EntitySet Name="Staff_Team" EntityType="Self.Staff_Team" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <AssociationSet Name="FK_DMDep" Association="Self.FK_DMDep">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Dep_Manager" EntitySet="Dep_Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DMManager" Association="Self.FK_DMManager">
+            <End Role="Manager" EntitySet="Managers" />
+            <End Role="Dep_Manager" EntitySet="Dep_Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Dep" Association="Self.FK_Team_Dep">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_Role" Association="Self.FK_Manager_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Manager" EntitySet="Managers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PMManager" Association="Self.FK_PMManager">
+            <End Role="Manager" EntitySet="Managers" />
+            <End Role="Project_Manager" EntitySet="Project_Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapPrj" Association="Self.FK_MapPrj">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Project_Team" EntitySet="Project_Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PMDep" Association="Self.FK_PMDep">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Project_Manager" EntitySet="Project_Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapTeam" Association="Self.FK_MapTeam">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Project_Team" EntitySet="Project_Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Role" Association="Self.FK_Staff_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ST_Staff" Association="Self.FK_ST_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Staff_Team" EntitySet="Staff_Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ST_Team" Association="Self.FK_ST_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Staff_Team" EntitySet="Staff_Team" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StaffManagementModelStoreContainer" CdmEntityContainer="StaffManagementEntitiesModel">
+          <EntitySetMapping Name="Dep_Manager">
+            <EntityTypeMapping TypeName="StaffManagementModel.Dep_Manager">
+              <MappingFragment StoreEntitySet="Dep_Manager">
+                <ScalarProperty Name="Dep_ID" ColumnName="Dep_ID" />
+                <ScalarProperty Name="Manager_ID" ColumnName="Manager_ID" />
+                <ScalarProperty Name="Joindate" ColumnName="Joindate" />
+                <ScalarProperty Name="Leavedate" ColumnName="Leavedate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="StaffManagementModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Dep_ID" ColumnName="Dep_ID" />
+                <ScalarProperty Name="Dep_Name" ColumnName="Dep_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Managers">
+            <EntityTypeMapping TypeName="StaffManagementModel.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+                <ScalarProperty Name="Staff_Name" ColumnName="Staff_Name" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Pic" ColumnName="Pic" />
+                <ScalarProperty Name="CV" ColumnName="CV" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Datehired" ColumnName="Datehired" />
+                <ScalarProperty Name="Dateleft" ColumnName="Dateleft" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="StaffManagementModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+                <ScalarProperty Name="Project_Name" ColumnName="Project_Name" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Manager">
+            <EntityTypeMapping TypeName="StaffManagementModel.Project_Manager">
+              <MappingFragment StoreEntitySet="Project_Manager">
+                <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+                <ScalarProperty Name="Manager_ID" ColumnName="Manager_ID" />
+                <ScalarProperty Name="Joindate" ColumnName="Joindate" />
+                <ScalarProperty Name="Leavedate" ColumnName="Leavedate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Team">
+            <EntityTypeMapping TypeName="StaffManagementModel.Project_Team">
+              <MappingFragment StoreEntitySet="Project_Team">
+                <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+                <ScalarProperty Name="Team_ID" ColumnName="Team_ID" />
+                <ScalarProperty Name="Joindate" ColumnName="Joindate" />
+                <ScalarProperty Name="Leavedate" ColumnName="Leavedate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="StaffManagementModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+                <ScalarProperty Name="Base_Salary" ColumnName="Base_Salary" />
+                <ScalarProperty Name="Badge" ColumnName="Badge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="StaffManagementModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+                <ScalarProperty Name="Staff_Name" ColumnName="Staff_Name" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Pic" ColumnName="Pic" />
+                <ScalarProperty Name="CV" ColumnName="CV" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Datehired" ColumnName="Datehired" />
+                <ScalarProperty Name="Dateleft" ColumnName="Dateleft" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff_Team">
+            <EntityTypeMapping TypeName="StaffManagementModel.Staff_Team">
+              <MappingFragment StoreEntitySet="Staff_Team">
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+                <ScalarProperty Name="Team_ID" ColumnName="Team_ID" />
+                <ScalarProperty Name="Joindate" ColumnName="Joindate" />
+                <ScalarProperty Name="Leavedate" ColumnName="Leavedate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StaffManagementModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="StaffManagementModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="Team_ID" ColumnName="Team_ID" />
+                <ScalarProperty Name="Team_Name" ColumnName="Team_Name" />
+                <ScalarProperty Name="Dep_ID" ColumnName="Dep_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

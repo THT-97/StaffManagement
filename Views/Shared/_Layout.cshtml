@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <metacharset ="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body style="margin-top:0px;">
+    <div style="width:auto">
+        <div id="banner">
+            <h1 style="text-align:center; color:purple; margin-top:50px"><b>STAFF MANAGEMENT</b></h1>
+        </div>
+        <div id="menu" style="background-color:bisque; margin-bottom:5px">
+            <div class="btn-group">
+                @Html.ActionLink("Home", "Index", "Home", new { @class = "a btn btn-info" }) &nbsp;
+            </div>
+        </div>
+        <hr style="margin-top:0px; border:solid 1px" />
+        <div id="content">@RenderBody()</div>
+        <div id="footer" style="bottom:0px; width:100%">
+            Copyright &copy;
+            @DateTime.Now.Year
+        </div>
+    </div>
+</body>
+</html>
