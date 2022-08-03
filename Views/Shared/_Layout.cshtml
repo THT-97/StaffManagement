@@ -14,7 +14,15 @@
         </div>
         <div id="menu" style="background-color:bisque; margin-bottom:5px">
             <div class="btn-group">
-                @Html.ActionLink("Home", "Index", "Home", new { @class = "a btn btn-info" }) &nbsp;
+                @Html.ActionLink("Home", "Index", "Home", new { @class = "a btn btn-info" })
+                @if (Session["Staff"] == null)
+                {
+                    @Html.ActionLink("Login", "Login", "Home", new { @class = "a btn btn-success" })
+                }
+                else
+                {
+                    @Html.ActionLink("Logout", "Logout", "Home", new { @class = "a btn btn-danger" })
+                }
             </div>
         </div>
         <hr style="margin-top:0px; border:solid 1px" />

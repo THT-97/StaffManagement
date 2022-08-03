@@ -1,0 +1,49 @@
+﻿@model StaffManagement.Models.Staff
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm("Login", "Home", "Login", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+    <form>
+        <table class="table-striped" width="25%" align="center">
+            <tr style="background-color:antiquewhite">
+                <th colspan="2"><h2 class="text-success" style="text-align:center">STAFF LOGIN</h2></th>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>
+                    <div class="form-group">
+                        @Html.TextBox("Email", null, new { @class = "form-control", @placeholder = "Email", @autofocus = "autofocus" })
+                        @Html.ValidationMessage("Staff", "", new { @class = "text-danger" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <td>
+                    <div class="form-group">
+                        @Html.TextBox("Password", null, new { @class = "form-control", @placeholder = "Password", @type = "password" })
+                        @Html.ValidationMessage("Staff", "", new { @class = "text-danger" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                        Login
+                    </button>
+                </td>
+            </tr>
+        </table>
+        @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+    </form>
+        
+    }
+
+</div>
+

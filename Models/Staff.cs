@@ -11,7 +11,8 @@ namespace StaffManagement.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Staff
     {
         public Staff()
@@ -23,7 +24,9 @@ namespace StaffManagement.Models
         public string Staff_Name { get; set; }
         public System.DateTime DoB { get; set; }
         public string Phone { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string Password { get; set; }
         public string Pic { get; set; }
         public string CV { get; set; }
