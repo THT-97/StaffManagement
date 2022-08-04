@@ -9,7 +9,7 @@ namespace StaffManagement.Controllers
 {
     public class HomeController : Controller
     {
-        StaffManagementEntitiesModel db = new StaffManagementEntitiesModel();
+        StaffManagementEntities1 db = new StaffManagementEntities1();
         public ActionResult Index()
         {
             return View();
@@ -38,17 +38,28 @@ namespace StaffManagement.Controllers
         [HttpPost]
         public ActionResult Login(FormCollection f)
         {
-            string email = f["Email"].ToString();
+            string username = f["Username"].ToString();
             string password = f["Password"].ToString();
-            Staff staff = db.Staffs.SingleOrDefault(s => s.Email == email && s.Password == password);
+            Account account = db.Accounts.SingleOrDefault(a => a.Username == username && a.Password == password);
             if (ModelState.IsValid)
             {
-                if(staff != null)
+                if(account != null)
                 {
-                    Session["Staff"] = staff.Staff_Name;
+                    Session["Role"] = db.Roles.SingleOrDefault(r => r.Role_ID == account.Role_ID).Role_Name;
+                    if (account.Role_ID == "0" || account.Role_ID == "3")
+                    {
+                        Manager manager = db.Managers.SingleOrDefault(m => m.AccountID == account.ID);
+                        Session["Staff"] = manager.Staff_Name;
+                    }
+                    else if (account.Role_ID == "1" || account.Role_ID == "2")
+                    {
+                        Staff staff = db.Staffs.SingleOrDefault(s => s.AccountID == account.ID);
+                        Session["Staff"] = staff.Staff_Name;
+                    }
+                    
                     return Redirect("Index");
                 }
-                else ModelState.AddModelError("", "Incorrect Email or Password");
+                else ModelState.AddModelError("", "Incorrect Username or Password");
             }
             return View();
         }
@@ -57,6 +68,7 @@ namespace StaffManagement.Controllers
         public ActionResult Logout()
         {
             Session["Staff"] = null;
+            Session["Role"] = null;
             return Redirect("Index");
         }
     }

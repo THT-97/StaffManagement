@@ -1,4 +1,4 @@
-﻿@model StaffManagement.Models.Staff
+﻿@model StaffManagement.Models.Account
 
 @{
     ViewBag.Title = "Login";
@@ -18,8 +18,8 @@
                 <th>Email:</th>
                 <td>
                     <div class="form-group">
-                        @Html.TextBox("Email", null, new { @class = "form-control", @placeholder = "Email", @autofocus = "autofocus" })
-                        @Html.ValidationMessage("Staff", "", new { @class = "text-danger" })
+                        @Html.TextBox("Username", null, new { @class = "form-control", @placeholder = "Email", @autofocus = "autofocus" })
+                        @Html.ValidationMessage("Account", "", new { @class = "text-danger" })
                     </div>
                 </td>
             </tr>
@@ -28,7 +28,7 @@
                 <td>
                     <div class="form-group">
                         @Html.TextBox("Password", null, new { @class = "form-control", @placeholder = "Password", @type = "password" })
-                        @Html.ValidationMessage("Staff", "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("Account", "", new { @class = "text-danger" })
                     </div>
                 </td>
             </tr>

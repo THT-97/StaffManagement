@@ -4,27 +4,31 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d6061303af71462a94defb5ca62287a6" Name="Diagram1">
-        <EntityTypeShape EntityType="StaffManagementModel.Dep_Manager" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StaffManagementModel.Department" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="StaffManagementModel.Manager" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StaffManagementModel.Project" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="StaffManagementModel.Project_Manager" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="StaffManagementModel.Project_Team" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="StaffManagementModel.Role" Width="1.5" PointX="1.5" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="StaffManagementModel.Staff" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StaffManagementModel.Staff_Team" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="StaffManagementModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="StaffManagementModel.Team" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+      <Diagram DiagramId="749cc360542349f5959cc6b97185c429" Name="Diagram1">
+        <EntityTypeShape EntityType="StaffManagementModel.Account" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.Dep_Manager" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.Department" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.Manager" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.Project" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.Project_Manager" Width="1.5" PointX="10.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.Project_Team" Width="1.5" PointX="13.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.Role" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.Staff" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.Staff_Team" Width="1.5" PointX="10.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffManagementModel.Team" Width="1.5" PointX="8.25" PointY="12" IsExpanded="true" />
+        <AssociationConnector Association="StaffManagementModel.FK__Manager__Account__1F98B2C1" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffManagementModel.FK__Staff__AccountID__2645B050" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffManagementModel.FK_Account_Role" ManuallyRouted="false" />
         <AssociationConnector Association="StaffManagementModel.FK_DMDep" ManuallyRouted="false" />
         <AssociationConnector Association="StaffManagementModel.FK_DMManager" ManuallyRouted="false" />
         <AssociationConnector Association="StaffManagementModel.FK_Team_Dep" ManuallyRouted="false" />
-        <AssociationConnector Association="StaffManagementModel.FK_Manager_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffManagementModel.FK__Manager__Role_ID__208CD6FA" ManuallyRouted="false" />
         <AssociationConnector Association="StaffManagementModel.FK_PMManager" ManuallyRouted="false" />
         <AssociationConnector Association="StaffManagementModel.FK_MapPrj" ManuallyRouted="false" />
         <AssociationConnector Association="StaffManagementModel.FK_PMDep" ManuallyRouted="false" />
         <AssociationConnector Association="StaffManagementModel.FK_MapTeam" ManuallyRouted="false" />
-        <AssociationConnector Association="StaffManagementModel.FK_Staff_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffManagementModel.FK__Staff__Role_ID__2739D489" ManuallyRouted="false" />
         <AssociationConnector Association="StaffManagementModel.FK_ST_Staff" ManuallyRouted="false" />
         <AssociationConnector Association="StaffManagementModel.FK_ST_Team" ManuallyRouted="false" />
       </Diagram>

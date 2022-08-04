@@ -9,20 +9,27 @@
 </head>
 <body style="margin-top:0px;">
     <div style="width:auto">
-        <div id="banner">
-            <h1 style="text-align:center; color:purple; margin-top:50px"><b>STAFF MANAGEMENT</b></h1>
+        <div id="banner" style="padding-right:5px">
+            <h1 style="text-align:center; color:purple; margin:30px"><b>STAFF MANAGEMENT</b></h1>
+            <div style="text-align:right; position:fixed; top:10px; right:5px">
+                @if (Session["Staff"] != null)
+                {
+                    <div style="background-color:lightgray; padding:5px">
+                        <p style="margin: 0"><b>@Session["Staff"]</b></p>
+                        <p><b>@Session["Role"]</b></p>
+                        <p>@Html.ActionLink("Logout", "Logout", "Home", new { @class = "a btn btn-danger" })</p>
+                    </div>
+                }
+                else
+                {
+                    @Html.ActionLink("Login", "Login", "Home", new { @class = "a btn btn-success" })
+                }
+            </div>
+            
         </div>
         <div id="menu" style="background-color:bisque; margin-bottom:5px">
             <div class="btn-group">
                 @Html.ActionLink("Home", "Index", "Home", new { @class = "a btn btn-info" })
-                @if (Session["Staff"] == null)
-                {
-                    @Html.ActionLink("Login", "Login", "Home", new { @class = "a btn btn-success" })
-                }
-                else
-                {
-                    @Html.ActionLink("Logout", "Logout", "Home", new { @class = "a btn btn-danger" })
-                }
             </div>
         </div>
         <hr style="margin-top:0px; border:solid 1px" />

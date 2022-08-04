@@ -12,21 +12,24 @@ namespace StaffManagement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Department
+    public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Department()
+        public Account()
         {
-            this.Dep_Manager = new HashSet<Dep_Manager>();
-            this.Teams = new HashSet<Team>();
+            this.Managers = new HashSet<Manager>();
+            this.Staffs = new HashSet<Staff>();
         }
     
-        public string Dep_ID { get; set; }
-        public string Dep_Name { get; set; }
+        public string ID { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Role_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dep_Manager> Dep_Manager { get; set; }
+        public virtual ICollection<Manager> Managers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Team> Teams { get; set; }
+        public virtual ICollection<Staff> Staffs { get; set; }
+        public virtual Role Role { get; set; }
     }
 }
