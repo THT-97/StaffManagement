@@ -45,16 +45,20 @@ namespace StaffManagement.Controllers
             {
                 if(account != null)
                 {
-                    Session["Role"] = db.Roles.SingleOrDefault(r => r.Role_ID == account.Role_ID).Role_Name;
+                    Role role = db.Roles.SingleOrDefault(r => r.Role_ID == account.Role_ID);
+                    Session["Role"] = role.Role_Name;
+                    Session["RoleID"] = role.Role_ID;
                     if (account.Role_ID == "0" || account.Role_ID == "3")
                     {
                         Manager manager = db.Managers.SingleOrDefault(m => m.AccountID == account.ID);
                         Session["Staff"] = manager.Staff_Name;
+                        Session["StaffID"] = manager.Staff_ID;
                     }
                     else if (account.Role_ID == "1" || account.Role_ID == "2")
                     {
                         Staff staff = db.Staffs.SingleOrDefault(s => s.AccountID == account.ID);
                         Session["Staff"] = staff.Staff_Name;
+                        Session["StaffID"] = staff.Staff_ID;
                     }
                     
                     return Redirect("Index");
@@ -67,8 +71,7 @@ namespace StaffManagement.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
-            Session["Staff"] = null;
-            Session["Role"] = null;
+            Session.Clear();
             return Redirect("Index");
         }
     }

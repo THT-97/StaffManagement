@@ -1,0 +1,107 @@
+﻿@model StaffManagement.Models.Manager
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Manager</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Staff_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Staff_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datehired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datehired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateleft)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dateleft)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.Role_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.Role_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Staff_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
