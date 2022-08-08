@@ -17,8 +17,12 @@ namespace StaffManagement.Controllers
         // GET: Managers
         public ActionResult Index()
         {
-            var managers = db.Managers.Include(m => m.Account).Include(m => m.Role);
-            return View(managers.ToList());
+            if (Session["RoleID"] != null && Session["RoleID"].ToString() == "3")
+            {
+                var managers = db.Managers.Include(m => m.Account).Include(m => m.Role);
+                return View(managers.ToList());
+            }
+            else return RedirectToAction("Index", "Home", null);
         }
 
         // GET: Managers/Details/5

@@ -5,45 +5,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2 class="text-center text-primary">List of Managers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-primary" })
 </p>
-<table class="table">
+<table class="table table-hover table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Staff_Name)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DoB)
+            Date of birth
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
+            Phone number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CV)
+            Profile picture
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Datehired)
+            Date hired
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Dateleft)
+            Date left
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Account.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Role.Role_Name)
+            Role
         </th>
         <th></th>
     </tr>
@@ -54,7 +48,7 @@
             @Html.DisplayFor(modelItem => item.Staff_Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DoB)
+            @item.DoB.ToString("dd/MM/yyyy")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Phone)
@@ -63,22 +57,27 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Pic)
+            <img class="center-block" width="30" src="~/Content/Images/Staff/@item.Pic" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CV)
+            @if (item.Status == 1)
+            {
+                <b class="text-success">Available</b>
+            }
+            else if (item.Status == 0)
+            {
+                <b class="text-danger">Left</b>
+            }
+            else
+            {
+                <b class="text-warning">Unavailable</b>
+            }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Status)
+            @if (item.Datehired != null) {@item.Datehired.Value.ToString("dd/MM/yyyy")}
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Datehired)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dateleft)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Account.Username)
+            @if (item.Dateleft != null) {@item.Dateleft.Value.ToString("dd/MM/yyyy")}
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Role.Role_Name)
