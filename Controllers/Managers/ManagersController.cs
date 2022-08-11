@@ -10,19 +10,18 @@ using StaffManagement.Models;
 
 namespace StaffManagement.Controllers
 {
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
     public class ManagersController : Controller
     {
         private StaffManagementEntities1 db = new StaffManagementEntities1();
-
+        private bool CheckRole => (Session["RoleID"] != null && Session["RoleID"].ToString() == "3") ? true : false;
+        
         // GET: Managers
         public ActionResult Index()
         {
-            if (Session["RoleID"] != null && Session["RoleID"].ToString() == "3")
-            {
-                var managers = db.Managers.Include(m => m.Account).Include(m => m.Role);
-                return View(managers.ToList());
-            }
-            else return RedirectToAction("Index", "Home", null);
+            if (!CheckRole) return RedirectToAction("Index", "Home", null);
+            var managers = db.Managers.Include(m => m.Account).Include(m => m.Role);
+            return View(managers.ToList());
         }
 
         // GET: Managers/Details/5

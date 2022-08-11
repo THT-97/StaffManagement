@@ -1,12 +1,16 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <metacharset ="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <Script type="text/javascript">
+        window.history.forward();
+        function noBack() { window.history.forward(); }
+    </Script>
 </head>
+
 <body style="margin-top:0px;">
     <div style="width:auto">
         <div id="banner" style="padding-right:5px">
@@ -19,13 +23,13 @@
                         <p><b>@Session["Role"]</b></p>
                         <div class="btn-group">
                             <button class="btn btn-info">Profile</button>
-                            @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "a btn btn-danger"})
+                            @Html.ActionLink("Logout", "Logout", "Home", null, new {onclick="noBack()", @class = "a btn btn-danger"})
                         </div>
                     </div>
                 }
                 else
                 {
-                    @Html.ActionLink("Login", "Login", "Home", new { @class = "a btn btn-success"})
+                    @Html.ActionLink("Login", "Login", "Home", new {@class = "a btn btn-success"})
                 }
             </div>
             

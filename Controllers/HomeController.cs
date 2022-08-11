@@ -68,11 +68,12 @@ namespace StaffManagement.Controllers
             return View();
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         [HttpGet]
         public ActionResult Logout()
         {
             Session.Clear();
-            return Redirect("Index");
+            return RedirectToAction("Index");
         }
     }
 }
